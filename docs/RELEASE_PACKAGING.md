@@ -41,15 +41,21 @@ npm run tauri signer generate -- -w "$env:USERPROFILE\.tauri\special-organizer.k
 
 Then:
 
-1. Copy the generated public key into `plugins.updater.pubkey` in `src-tauri/tauri.conf.json`.
+1. Copy the generated public key into `plugins.updater.pubkey` in `src-tauri/tauri.conf.json`. This repository now has the generated public key configured.
 2. Keep the private key outside the repository.
-3. Set the private key only in the release shell or CI secret:
+3. Build the Windows installer:
 
 ```powershell
-$env:TAURI_SIGNING_PRIVATE_KEY="Path or content of the private key"
-$env:TAURI_SIGNING_PRIVATE_KEY_PASSWORD="Optional password"
 npm run tauri:build
 ```
+
+4. If the build environment cannot complete automatic updater signing, sign the generated installer explicitly:
+
+```powershell
+.\node_modules\.bin\tauri.cmd signer sign --private-key-path "$env:USERPROFILE\.tauri\special-organizer.key" --password= "src-tauri\target\release\bundle\nsis\Special Organizer_0.1.0_x64-setup.exe"
+```
+
+The resulting `.sig` file is safe to upload to GitHub Releases. The private key file is not.
 
 Do not store these environment variables in `.env` for release builds.
 
@@ -96,13 +102,14 @@ Provide these before the first real GitHub-backed release:
 ## Release Checklist
 
 1. Replace updater endpoint and public key placeholders.
-2. Set signing environment variables in the release shell or CI secrets.
+2. Keep the signing private key outside the repository.
 3. Run `npm run build`.
 4. Run `npm run tauri:build`.
-5. Upload the NSIS installer, generated `.sig`, and `latest.json` to the GitHub Release.
-6. Install the generated `*-setup.exe` on a clean Windows user profile.
-7. In the app, use `检查更新`, `下载更新`, and `安装更新` against a newer test release.
-8. Run the cleanup script dry run, then confirm deletion only on a disposable test profile.
+5. Sign the generated NSIS installer if the build did not create a fresh `.sig`.
+6. Upload the NSIS installer, generated `.sig`, and `latest.json` to the GitHub Release.
+7. Install the generated `*-setup.exe` on a clean Windows user profile.
+8. In the app, use `检查更新`, `下载更新`, and `安装更新` against a newer test release.
+9. Run the cleanup script dry run, then confirm deletion only on a disposable test profile.
 
 ## References
 
