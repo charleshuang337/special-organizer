@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Frontend build output
+dist/
+dist-ssr/
+*.local
+
+# Tauri/Rust output
+src-tauri/target/
+src-tauri/gen/
+
+# Local app data, logs, and databases
+*.db
+*.sqlite
+*.sqlite3
+*.log
+logs/
+
+# Secrets and signing material
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.sig
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

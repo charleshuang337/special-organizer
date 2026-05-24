@@ -1,0 +1,21 @@
+:root {
+  color-scheme: light;
+  font-family:
+    Inter, "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  --color-surface: #eef2f4;
+  --color-panel: #ffffff;
+  --color-input: #f8fafb;
+  --color-muted-surface: #f4f6f7;
+  --color-border: #d8e0e4;
+  --color-text: #1f2a2e;
+  --color-muted: #627176;
+  --color-brand: #176b5f;
+  --color-accent: #8a4b18;
+  --color-accent-soft: #f6e5d5;
+  --color-danger: #b42318;
+  --color-success: #127a3d;
+  background: var(--color-surface);
+}
