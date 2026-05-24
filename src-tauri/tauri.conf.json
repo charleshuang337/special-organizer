@@ -26,7 +26,36 @@
     }
   },
   "bundle": {
-    "active": false,
-    "targets": "all"
+    "active": true,
+    "targets": ["nsis"],
+    "createUpdaterArtifacts": true,
+    "publisher": "Special Organizer Contributors",
+    "category": "Productivity",
+    "icon": ["icons/icon.ico"],
+    "shortDescription": "Local-first special-series lifecycle manager",
+    "longDescription": "Special Organizer is a local-first Windows desktop application for managing supermarket special-series lifecycle work.",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "displayLanguageSelector": false,
+        "languages": ["English", "SimpChinese"],
+        "compression": "lzma",
+        "startMenuFolder": "Special Organizer"
+      }
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "REPLACE_WITH_TAURI_UPDATER_PUBLIC_KEY",
+      "endpoints": [
+        "https://github.com/charleshuang337/special-organizer/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "basicUi"
+      }
+    }
   }
 }

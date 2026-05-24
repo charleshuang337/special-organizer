@@ -156,6 +156,14 @@ export interface AppStatus {
   database: StorageStatus;
 }
 
+export interface CleanupPreview {
+  app_data_dir: string;
+  app_local_data_dir: string;
+  app_log_dir: string;
+  database_path: string;
+  warning: string;
+}
+
 export interface AppError {
   code: string;
   field?: string | null;
@@ -164,6 +172,7 @@ export interface AppError {
 
 export const SERIES_COMMANDS = {
   app_status: "app_status",
+  cleanup_preview: "cleanup_preview",
   list_suppliers: "list_suppliers",
   create_series: "create_series",
   update_series: "update_series",

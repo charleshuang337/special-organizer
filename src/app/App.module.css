@@ -1,18 +1,16 @@
 .shell {
   min-height: 100vh;
   color: var(--color-text);
-  background:
-    linear-gradient(180deg, rgb(248 249 251 / 92%), rgb(240 244 247 / 92%)),
-    var(--color-surface);
+  background: var(--color-surface);
 }
 
 .topbar {
   display: grid;
-  grid-template-columns: minmax(280px, 0.8fr) minmax(520px, 1.2fr);
-  gap: 24px;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(680px, 1.28fr);
+  gap: 22px;
   align-items: center;
   min-height: 88px;
-  padding: 18px 24px;
+  padding: 16px 22px;
   border-bottom: 1px solid var(--color-border);
   background: var(--color-panel);
 }
@@ -39,7 +37,7 @@
 .brand h1,
 .panelHeader h2,
 .sidebar h2,
-.filterBlock h3 {
+.reportGroup h3 {
   margin: 0;
   letter-spacing: 0;
 }
@@ -56,13 +54,13 @@
   margin: 0 0 4px;
   color: var(--color-muted);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 750;
   text-transform: uppercase;
 }
 
 .searchRow {
   display: grid;
-  grid-template-columns: minmax(220px, 1fr) 150px 160px 112px;
+  grid-template-columns: minmax(190px, 1fr) 132px 152px 142px 104px;
   gap: 10px;
   align-items: center;
 }
@@ -93,8 +91,16 @@
 }
 
 .searchRow select,
-.searchRow button {
-  height: 42px;
+.searchRow button,
+.detailForm input,
+.detailForm select,
+.detailForm textarea,
+.reportControls input,
+.monthControls button,
+.actionRow button,
+.reportItem button,
+.filterButtonList button,
+.navList button {
   min-width: 0;
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -103,24 +109,61 @@
   font: inherit;
 }
 
+.searchRow select,
 .searchRow button {
-  background: var(--color-brand);
-  color: white;
-  font-weight: 700;
+  height: 42px;
 }
 
-.searchRow :disabled {
-  cursor: not-allowed;
-  opacity: 0.62;
+.primaryButton {
+  border-color: var(--color-brand) !important;
+  background: var(--color-brand) !important;
+  color: white !important;
+  font-weight: 750;
+}
+
+.statusStrip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 22px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-muted-surface);
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-accent);
+}
+
+.statusDot[data-tone="success"] {
+  background: var(--color-success);
+}
+
+.statusDot[data-tone="error"] {
+  background: var(--color-danger);
+}
+
+.commandList {
+  overflow: hidden;
+  max-width: 520px;
+  color: var(--color-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .workspace {
   display: grid;
-  grid-template-columns: 260px minmax(420px, 1fr) 340px;
-  gap: 16px;
-  height: calc(100vh - 88px);
-  min-height: 620px;
-  padding: 16px;
+  grid-template-columns: 248px minmax(470px, 1fr) 376px;
+  gap: 14px;
+  height: calc(100vh - 126px);
+  min-height: 640px;
+  padding: 14px;
 }
 
 .sidebar,
@@ -134,37 +177,116 @@
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: var(--color-panel);
-  padding: 16px;
+  padding: 14px;
+}
+
+.sidebarSection + .sidebarSection {
+  margin-top: 22px;
 }
 
 .sidebar h2 {
-  font-size: 16px;
+  font-size: 15px;
 }
 
-.navList {
+.navList,
+.filterButtonList {
   display: grid;
   gap: 8px;
-  margin: 16px 0 22px;
+  margin-top: 12px;
 }
 
 .navList button {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  height: 38px;
-  min-width: 0;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: var(--color-muted-surface);
-  color: var(--color-text);
-  font: inherit;
+  min-height: 38px;
+  padding: 0 10px;
   text-align: left;
 }
 
-.navList button span:first-child {
+.navList button span:first-child,
+.filterButtonList button,
+.taskTitle,
+.taskMeta,
+.reportItem strong,
+.reportItem span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.activeNavButton,
+.activeFilterButton {
+  border-color: rgb(23 107 95 / 48%) !important;
+  background: rgb(23 107 95 / 9%) !important;
+  color: var(--color-brand) !important;
+  font-weight: 750 !important;
+}
+
+.filterButtonList button {
+  min-height: 34px;
+  padding: 0 10px;
+  text-align: left;
+}
+
+.updatePanel {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.updateStatus {
+  display: block;
+  min-height: 38px;
+  padding: 9px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-muted-surface);
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.updateStatus[data-phase="available"],
+.updateStatus[data-phase="downloaded"],
+.updateStatus[data-phase="none"] {
+  color: var(--color-brand);
+}
+
+.updateStatus[data-phase="error"] {
+  color: var(--color-danger);
+}
+
+.updateProgress {
+  width: 100%;
+  height: 8px;
+  accent-color: var(--color-brand);
+}
+
+.updateActions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.updateActions button {
+  min-width: 0;
+  min-height: 34px;
+  padding: 0 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-input);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.updateActions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.54;
 }
 
 .count,
@@ -181,44 +303,16 @@
   font-weight: 800;
 }
 
-.filterBlock {
-  margin-top: 22px;
-}
-
-.filterBlock h3 {
-  color: var(--color-muted);
-  font-size: 13px;
-}
-
-.chipList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.chipList span {
-  max-width: 100%;
-  overflow: hidden;
-  padding: 6px 8px;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  color: var(--color-muted);
-  font-size: 12px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .centerPane,
 .detailPane {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   align-content: start;
   overflow: auto;
 }
 
 .centerPane {
-  grid-template-rows: minmax(360px, 0.66fr) minmax(220px, 0.34fr);
+  grid-template-rows: minmax(356px, 0.58fr) minmax(260px, 0.42fr);
 }
 
 .panel {
@@ -226,7 +320,7 @@
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: var(--color-panel);
-  padding: 16px;
+  padding: 14px;
 }
 
 .panelHeader {
@@ -234,11 +328,12 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .panelHeader h2 {
   font-size: 17px;
+  line-height: 1.25;
 }
 
 .statusPill {
@@ -246,28 +341,318 @@
   padding: 0 10px;
 }
 
+.monthControls {
+  display: grid;
+  grid-template-columns: 34px minmax(104px, auto) 34px;
+  gap: 8px;
+  align-items: center;
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.monthControls button {
+  height: 34px;
+}
+
+.weekdayRow,
 .calendarGrid {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.weekdayRow {
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.calendarGrid {
   gap: 8px;
   min-height: 286px;
 }
 
-.calendarGrid span {
-  display: block;
-  min-height: 48px;
-  border: 1px dashed var(--color-border);
+.calendarDay {
+  display: grid;
+  align-content: space-between;
+  min-height: 42px;
+  padding: 7px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-input);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+}
+
+.calendarDay[data-outside-month="true"] {
+  color: rgb(98 113 118 / 56%);
+  background: var(--color-muted-surface);
+}
+
+.calendarDay[data-selected="true"] {
+  border-color: var(--color-brand);
+  box-shadow: inset 0 0 0 1px var(--color-brand);
+}
+
+.calendarDay strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: white;
+  font-size: 12px;
+}
+
+.taskList,
+.reportList {
+  display: grid;
+  gap: 8px;
+}
+
+.taskItem {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  min-height: 76px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-input);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+}
+
+.taskItem[data-selected="true"] {
+  border-color: var(--color-brand);
+  background: rgb(23 107 95 / 7%);
+}
+
+.taskTitle {
+  font-weight: 800;
+}
+
+.taskMeta,
+.taskFooter {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.taskFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detailForm {
+  display: grid;
+  gap: 10px;
+}
+
+.detailForm label,
+.readonlyField,
+.reportControls label {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.readonlyField {
+  min-height: 62px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   background: var(--color-muted-surface);
 }
 
-@media (max-width: 1180px) {
+.readonlyField strong {
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.readonlyField small {
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.detailForm input,
+.detailForm select,
+.detailForm textarea,
+.reportControls input {
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.detailForm textarea {
+  min-height: 72px;
+  padding: 9px 10px;
+  resize: vertical;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.actionRow button {
+  min-height: 36px;
+  padding: 0 12px;
+}
+
+.reportControls {
+  display: grid;
+  grid-template-columns: minmax(92px, 0.6fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.checkboxLabel {
+  grid-template-columns: auto 1fr !important;
+  align-items: center;
+  min-height: 32px;
+  color: var(--color-text) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+
+.checkboxLabel input {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+}
+
+.reportScope {
+  margin: 0 0 12px;
+  padding: 9px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-muted-surface);
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.reportGroup {
+  margin-top: 14px;
+}
+
+.reportGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.reportGroup h3 {
+  font-size: 14px;
+}
+
+.reportGroupHeader span {
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.emptyText {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px dashed var(--color-border);
+  border-radius: 8px;
+  color: var(--color-muted);
+  background: var(--color-muted-surface);
+  font-size: 13px;
+}
+
+.reportItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.reportItem button {
+  min-height: 42px;
+  padding: 7px 9px;
+}
+
+.reportItemMain {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+}
+
+.reportActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: 168px;
+}
+
+.reportActions button {
+  min-width: 72px;
+  white-space: nowrap;
+}
+
+.reportActions button[data-variant="primary"] {
+  border-color: var(--color-brand);
+  background: rgb(23 107 95 / 9%);
+  color: var(--color-brand);
+  font-weight: 750;
+}
+
+.reportItem strong {
+  font-size: 13px;
+}
+
+.reportItem span {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: rgb(23 107 95 / 42%);
+}
+
+@media (max-width: 1280px) {
   .topbar {
     grid-template-columns: 1fr;
   }
 
   .workspace {
     grid-template-columns: 220px minmax(0, 1fr);
+    height: auto;
   }
 
   .detailPane {
@@ -276,14 +661,21 @@
   }
 }
 
-@media (max-width: 840px) {
+@media (max-width: 900px) {
   .searchRow,
   .workspace,
-  .detailPane {
+  .detailPane,
+  .formGrid,
+  .reportControls,
+  .statusStrip {
     grid-template-columns: 1fr;
   }
 
   .workspace {
-    height: auto;
+    min-height: 0;
+  }
+
+  .commandList {
+    max-width: none;
   }
 }

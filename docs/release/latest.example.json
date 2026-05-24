@@ -1,0 +1,11 @@
+{
+  "version": "0.1.1",
+  "notes": "Replace this example with release notes for the published build.",
+  "pub_date": "2026-05-25T00:00:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "PASTE_CONTENTS_OF_GENERATED_SIG_FILE_HERE",
+      "url": "https://github.com/charleshuang337/special-organizer/releases/download/v0.1.1/Special%20Organizer_0.1.1_x64-setup.exe"
+    }
+  }
+}

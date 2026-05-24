@@ -22,6 +22,8 @@
 7. Packaging/Updater Agent
 8. QA/Release Gate Agent
 
+任何不在此列表中的组合 agent 都不是常规计划角色。若确实需要跨边界修复，例如 `Reports/Data Fix Agent`，必须先由 Head 明确批准、限定 defect、限定文件范围，并在完成后交还给原 owner。
+
 ## 1. Git/Bootstrap Agent
 
 ### Mission
