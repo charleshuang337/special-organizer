@@ -27,7 +27,7 @@ https://github.com/charleshuang337/special-organizer/releases/latest/download/la
 
 The release must upload a `latest.json` asset that follows the shape in `docs/release/latest.example.json`.
 
-For Windows x64, the static JSON key is `windows-x86_64`. Its `url` must point to the downloadable release asset and its `signature` must contain the text contents of the generated `.sig` file.
+For Windows x64, the static JSON key is `windows-x86_64`. Its `url` must point to the downloadable release asset and its `signature` must contain the text contents of the generated `.sig` file. Use the actual asset URL shown by GitHub Releases; GitHub CLI may normalize spaces in uploaded asset names to periods.
 
 ## Signing
 

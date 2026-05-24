@@ -5,7 +5,7 @@
   "platforms": {
     "windows-x86_64": {
       "signature": "PASTE_CONTENTS_OF_GENERATED_SIG_FILE_HERE",
-      "url": "https://github.com/charleshuang337/special-organizer/releases/download/v0.1.1/Special%20Organizer_0.1.1_x64-setup.exe"
+      "url": "https://github.com/charleshuang337/special-organizer/releases/download/v0.1.1/Special.Organizer_0.1.1_x64-setup.exe"
     }
   }
 }
