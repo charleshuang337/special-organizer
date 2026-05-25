@@ -66,6 +66,7 @@ import {
   formatUpdateError,
   formatUpdateProgress,
   installDownloadedAppUpdate,
+  UPDATE_ENDPOINT,
   type AppUpdate,
   type UpdateProgress,
 } from "../features/updates/updateCommands";
@@ -469,12 +470,12 @@ export function App() {
         update
           ? {
               phase: "available",
-              message: `发现版本 ${update.version}`,
+              message: `发现版本 ${update.version}，可下载更新。`,
               progress: null,
             }
           : {
               phase: "none",
-              message: "当前已是最新版本",
+              message: `当前已是最新版本。已检查 ${UPDATE_ENDPOINT}`,
               progress: null,
             },
       );

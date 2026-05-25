@@ -25,7 +25,7 @@ The configured updater endpoint is:
 https://github.com/charleshuang337/special-organizer/releases/latest/download/latest.json
 ```
 
-The release must upload a `latest.json` asset that follows the shape in `docs/release/latest.example.json`.
+The release must upload a `latest.json` asset that follows the shape in `docs/release/latest.example.json`. Write this file as UTF-8 without BOM; a BOM can make the updater report a low-level JSON parse error.
 
 For Windows x64, the static JSON key is `windows-x86_64`. Its `url` must point to the downloadable release asset and its `signature` must contain the text contents of the generated `.sig` file. Use the actual asset URL shown by GitHub Releases; GitHub CLI may normalize spaces in uploaded asset names to periods.
 
